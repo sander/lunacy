@@ -1,0 +1,64 @@
+<div class="navbar integrated">
+  <div class="navbar-inner">
+    <span class="brand" ng-show="game.shared.name">{{game.shared.name}}</span>
+    <ul class="nav">
+      <li><a ontap="navigate.go('/dashboard', 'slide', true)">Back</a></li>
+    </ul>
+    <ul class="nav pull-right">
+      <li ng-show="view == 'main'"><a ontap="navigate.go('/game/' + game.id + '/chat', 'fade')">Chat <span ng-show="news" class="badge badge-important">{{news}}</span></a></li>
+      <li ng-show="view == 'chat'"><a ontap="navigate.go('/game/' + game.id + '/main', 'fade')">Game</a></li>
+    </ul>
+  </div>
+</div>
+
+<div ng-repeat="main in [view == 'main']|filter:true" class="main game-main time-{{game.shared.time}}" ng-include="'partials/game-main.html'"></div>
+<div ng-repeat="chat in [view == 'chat']|filter:true" class="main game-chat" ng-include="'partials/game-chat.html'" ng-controller="ChatCtrl"></div> 
+
+<div class="navbar bottom">
+  <div class="navbar-inner">
+    <player-grid>
+      <div ng-repeat="player in game.players.array" class="player" ng-class="{ option: (player | votable:action) || (player | selectable:action), selected: action.vote == player || action.selection == player, dead: game.players.dead.contains(player), withRoles: game.roles(player).length }">
+        <label ng-class="{ withRoles: game.roles(player).length }">
+          <span ng-switch on="action.method">
+            <input ng-switch-when="vote" ng-show="player | votable:action" type="radio" name="vote" value="{{player}}" ng-model="action.vote" ng-click="save(action)"
+            ><input ng-switch-when="selection" ng-show="player | selectable:action" type="radio" name="selection" value="{{player}}" ng-model="action.selection" ng-click="save(action)"
+          ></span
+          ><!--<player name="{{player}}" format="avatar"></player>-->
+          <avatar player="player"></avatar>
+          <span ng-repeat="tag in game.tags(player)" ng-switch on="tag">
+            <img ng-switch-when="mayor" src="images/mayor.svg" class="emblem" title="mayor" data-toggle="tooltip" data-placement="top" data-trigger="click hover">
+            <img ng-switch-when="dead" src="images/cross.svg" class="emblem" title="dead" data-toggle="tooltip" data-placement="top" data-trigger="click hover">
+            <role tag="role/werewolf" ng-switch-when="role/werewolf"></role>
+            <role tag="role/hunter" ng-switch-when="role/hunter"></role>
+            <role tag="role/civilian" ng-switch-when="role/civilian"></role>
+            <role tag="role/priest" ng-switch-when="role/priest"></role>
+            <role tag="role/seer" ng-switch-when="role/seer"></role>
+            <!--
+            <img ng-switch-when="role/werewolf" src="images/roles/werewolf.svg" class="role" title="werewolf" data-toggle="tooltip" data-placement="top" data-trigger="click hover">
+            <img ng-switch-when="role/hunter" src="images/roles/hunter.svg" class="role" title="hunter" data-toggle="tooltip" data-placement="top" data-trigger="click hover">
+            <img ng-switch-when="role/civilian" src="images/roles/civilian.svg" class="role" title="civilian" data-toggle="tooltip" data-placement="top" data-trigger="click hover">
+            <img ng-switch-when="role/priest" src="images/roles/priest.svg" class="role" title="priest" data-toggle="tooltip" data-placement="top" data-trigger="click hover">
+            <img ng-switch-when="role/seer" src="images/roles/seer.svg" class="role" title="seer" data-toggle="tooltip" data-placement="top" data-trigger="click hover">
+            -->
+            <span ng-switch-default>{{tag}}</span>
+          </span>
+          <span class="name">{{player}}</span>
+        </label>
+      </div>
+      <div ng-repeat="i in [] | range:game.shared.n_vacancies" class="player">
+        <label>
+          <avatar static="images/vacancy.png"></avatar>
+        </label>
+      </div>
+      <div class="rolesLeft">
+        <span ng-repeat="role in rolesLeft" ng-switch on="role" class="roleLeft">
+          <role tag="role/werewolf" ng-switch-when="role/werewolf"></role>
+          <role tag="role/hunter" ng-switch-when="role/hunter"></role>
+          <role tag="role/civilian" ng-switch-when="role/civilian"></role>
+          <role tag="role/priest" ng-switch-when="role/priest"></role>
+          <role tag="role/seer" ng-switch-when="role/seer"></role>
+        </span>
+      </div>
+    </player-grid>
+  </div>
+</div>

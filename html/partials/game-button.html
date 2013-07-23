@@ -1,0 +1,10 @@
+<div ng-class="{ ended: game.ended }">
+  <p class="name">
+    {{game.name}}
+    <span ng-show="game.joining">(joining…)</span>
+    <span ng-show="game.chat_info.new_messages[user]" class="badge badge-important">{{game.chat_info.new_messages[user]}}</span>
+  </p>
+  <div class="players" ng-hide="inactiveFilter(game)">
+    <avatar ng-repeat="player in game.players" player="player"></avatar><avatar ng-repeat="i in [] | range:game.n_vacancies" static="images/vacancy.png"></avatar>
+  </div>
+</div>

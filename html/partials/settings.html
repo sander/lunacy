@@ -1,0 +1,30 @@
+<div class="navbar">
+  <div class="navbar-inner">
+    <span class="brand">Lunacy settings</span>
+    <ul class="nav">
+      <li><a ontap="navigate.go('/dashboard', 'modal', true)">Back</a></li>
+    </ul>
+  </div>
+</div>
+
+<div class="main settings">
+  <form>
+    <fieldset>
+      <legend>User</legend>
+        <p>{{user}} <button class="btn" ontap="signOut()">Sign out</button>
+      </legend>
+      <p>Registered: {{profile.registered | date:'mediumDate'}} {{profile.registered | date:'shortTime' }} <span class="icon icon-download" ng-hide="profile.registered"></span>
+      <p>Account type: {{profile.account_type}} <span class="icon icon-download" ng-hide="profile.account_type"></span> <a class="btn" ng-show="profile.account_type != 'full'" href="#/upgrade">Upgrade</a>
+    </fieldset>
+    <fieldset>
+      <legend>Avatar</legend>
+      <ng-include src="'partials/choose-avatar.html'" ng-controller="ChooseAvatarCtrl"></ng-include>
+    </fieldset>
+    <fieldset>
+      <p>For support, visit <a external-href="http://playlunacy.com/forum/">our forum</a>.</p>
+    </fieldset>
+    <fieldset>
+      <p>Lunacy © 2012—2013. <a external-href="http://playlunacy.com/credits/">Credits</a></p>
+    </fieldset>
+  </form>
+</div>

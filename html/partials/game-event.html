@@ -1,0 +1,52 @@
+<div ng-switch on="message.action">
+  <div ng-switch-when="join">
+    <p class="description">{{message.subject[0]}} has joined the game.</p>
+  </div>
+  <div ng-switch-when="found">
+    <p class="description">{{message.subject[0]}} has founded {{game.shared.name}}.</p>
+  </div>
+  <div ng-switch-when="see_role">
+    <p class="description">All players have seen their roles.</p>
+  </div>
+  <div ng-switch-when="win">
+    <p class="description">{{message.subject.join(', ')}} win.</p>
+  </div>
+  <div ng-switch-when="eat">
+    <p class="description" ng-show="message.subject.length">The werewolves ({{message.subject.join(', ')}}) have eaten {{message.object[0]}}.</p>
+    <p class="description" ng-hide="message.subject.length">The werewolves have eaten {{message.object[0]}}.</p>
+  </div>
+  <div ng-switch-when="see">
+    <p class="description" ng-hide="message.object.length">The seer has seen somebody’s role.</p>
+    <p class="description" ng-show="message.object.length">As a seer, you see that {{message.object[0]}} is a {{message.data.roles[0].split('/')[1]}}.</p>
+  </div>
+  <div ng-switch-when="shoot">
+    <p class="description">{{message.subject[0]}} has shot {{message.object[0]}}.</p>
+  </div>
+  <div ng-switch-when="priest_save">
+    <p class="description" ng-hide="message.object.length">The priest has saved someone from the werewolves.</p>
+    <p class="description" ng-show="message.object.length">As a priest, you have saved {{message.object[0]}} from the werewolves.</p>
+  </div>
+  <div ng-switch-when="become_mayor">
+    <p class="description">{{message.subject[0]}} has been elected as a mayor.</p>
+    <dl class="detail poll">
+      <div ng-repeat="(name, voters) in message.data.votes">
+        <dt><avatar player="name" title="{{name}}" data-toggle="tooltip" data-placement="bottom" data-trigger="click hover"></avatar></dt>
+        <dd><avatar ng-repeat="voter in voters" player="voter" class="avatar" title="{{voter}}" data-toggle="tooltip" data-placement="bottom" data-trigger="click hover"></avatar></dd>
+      </div>
+    </dl>
+  </div>
+  <div ng-switch-when="hang">
+    <p class="description">{{message.object[0]}} has been hanged.</p>
+    <dl class="detail poll">
+      <div ng-repeat="(name, voters) in message.data.votes">
+        <dt><avatar player="name" title="{{name}}" data-toggle="tooltip" data-placement="bottom" data-trigger="click hover"></avatar></dt>
+        <dd><avatar ng-repeat="voter in voters" player="voter" class="avatar" title="{{voter}}" data-toggle="tooltip" data-placement="bottom" data-trigger="click hover"></avatar></dd>
+      </div>
+    </dl>
+  </div>
+  <div ng-switch-default>
+    <p class="description">{{message.subject.join(', ')}} {{message.action}} {{message.object.join(', ')}}</p>
+    <p class="data" ng-show="message.data">{{message.data}}</p>
+  </div>
+</div>
+<p class="time">{{message.time | date:'EEE MMM d, h:mm:ss a'}}</p>

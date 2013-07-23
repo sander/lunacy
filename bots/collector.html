@@ -1,0 +1,92 @@
+<!doctype html>
+<meta charset=utf-8>
+
+<!--
+Copyright 2012-2013 Sander Dijkhuis
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+
+<title>Upgrade Lunacy</title>
+
+<style>
+#success, #failure { display: none; }
+body {
+  font: 13px sans-serif;
+  padding: 10px;
+}
+h1 {
+  font-size: 17px;
+}
+#buy {
+  cursor: pointer;
+}
+</style>
+
+<script src="https://wallet.google.com/inapp/lib/buy.js"></script>
+<script>var user = '%USER%';</script>
+
+<h1>Upgrade Lunacy</h1>
+
+<div class="view" id="welcome">
+  <p>Upgrade your Lunacy account ‘<b><script>document.write(user)</script></b>’ now to simultaneously play as many games as you want.
+  <p><img id="buy" alt="Buy with Google" src="http://checkout.google.com/buttons/checkout.gif?merchant_id=15622554870054216562&amp;w=180&amp;h=46&amp;style=white&amp;variant=text">
+</div>
+
+<div class="view" id="success">
+  <p>Your order has been processed, thank you! Please allow for a few seconds for your account to be upgraded. You may now close this window.
+  <p>If you still cannot play multiple games simultaneously, please try these solutions:
+  <ul>
+    <li>Close Lunacy and start it again.
+    <li>Sign out and sign in again.
+    <li>Email <a href="mailto:support@playlunacy.com">support@playlunacy.com</a>.
+  </ul>
+</div>
+
+<div class="view" id="failure">
+  <p>The upgrade was not completed. Please email <a href="mailto:support@playlunacy.com">support@playlunacy.com</a> if something went wrong.
+  <p><button id="again">Try again</a>
+</div>
+
+<script>
+  var button = document.getElementById('buy');
+  
+  document.getElementById('again').onclick = function() {
+    document.getElementById('welcome').style.display = 'block';
+    document.getElementById('failure').style.display = 'none';
+  };
+
+  button.onclick = function() {
+    var request = new XMLHttpRequest();
+    request.open('POST', 'payload', true);
+    request.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        var token = this.responseText;
+        google.payments.inapp.buy({
+          jwt: token,
+          success: successHandler,
+          failure: failureHandler
+        });
+      }
+    };
+    request.send('user=' + user);
+    document.getElementById('welcome').style.display = 'none';
+  };
+  
+  var successHandler = function(action) {
+    document.getElementById('success').style.display = 'block';
+  };
+  var failureHandler = function(error) {
+    document.getElementById('failure').style.display = 'block';
+  };
+</script>

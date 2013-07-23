@@ -1,0 +1,16 @@
+<div class="history" scroll-down="messages">
+  <div class="message" ng-repeat="message in messages" ng-switch on="message.type">
+    <article class="chat" ng-switch-when="game_chat">
+      <p class="user" ng-hide="!$first &amp;&amp; messages[$index - 1].user == message.user">
+        <avatar player="message.user" title="{{message.user}}" data-toggle="tooltip" data-placement="bottom" data-trigger="click hover"></avatar>
+      </p>
+      <p class="content" ng-class="{ first: $first || messages[$index - 1].user != message.user, last: $last || messages[$index + 1].user != message.user, self: message.user == user }"><b ng-hide="!$first &amp;&amp; messages[$index - 1].user == message.user">{{message.user}}:</b> {{message.content}} <span class="time">{{message.time | date:'EEE MMM d, h:mm:ss a'}}</span></p>
+    </article>
+    <article class="event" ng-switch-default ng-include="'partials/game-event.html'"></article>
+  </div>
+</div>
+<div class="input" ng-show="game.ended || (game.shared.time == 'day' &amp;&amp; (game.players.alive.contains(user) || game.players.alive.indexOf(user) != -1))">
+  <form ng-submit="send()">
+    <p><input type="text" ng-model="message" ng-change="remember()" placeholder="Type a message"></p>
+  </form>
+</div>

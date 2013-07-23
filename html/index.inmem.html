@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en" ng-app="lunacy" ng-csp>
+<head>
+  <meta charset="utf-8">
+  <title>Lunacy</title>
+  <meta name="viewport" content="initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+  <link rel="stylesheet" href="lib/angular-mobile-nav/mobile-nav.css">
+  <link rel="stylesheet/less" href="less/app.less">
+  <script src="js/before-less.js"></script>
+  <script src="lib/less.js"></script>
+</head>
+<body ng-controller="AppCtrl">
+  <mobile-view></mobile-view>
+
+  <!-- hack in the design docs -->
+  <script>
+    var require = function(name) {
+      switch (name) {
+        case 'couchapp':
+          return {
+            loadFiles: function() {}
+          };
+          break;
+      }
+    };
+    var module = {};
+    window.ddocs = {};
+  </script>
+  <script src="../design/general.js"></script>
+  <script>window.ddocs['general'] = ddoc;</script>
+  <script src="../design/server.js"></script>
+  <script>window.ddocs['server'] = ddoc;</script>
+  <script src="../design/user.js"></script>
+  <script>window.ddocs['user'] = ddoc;</script>
+  <script src="js/inmem.js"></script>
+
+  <script src="lib/jquery.js"></script>
+  <script src="lib/bootstrap/js/bootstrap.js"></script>
+  <script src="lib/angular/angular.js"></script>
+  <script src="lib/angular-mobile-nav/mobile-nav.js"></script>
+  <script>window.module = undefined;</script>
+  <script src="lib/uuid.js"></script>
+  <script src="../lib/game.js"></script>
+  <script>var exports = null;</script>
+  <script src="../lib/proceed.js"></script>
+  <script>window.Proceed = exports;</script>
+  <script src="js/bots.js"></script>
+  <script src="js/devsetup.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/services.inmem.config.js"></script>
+  <script src="js/services.inmem.js"></script>
+  <script src="js/services.js"></script>
+  <script src="js/controllers.js"></script>
+  <script src="js/filters.js"></script>
+  <script src="js/directives.js"></script>
+</body>
+</html>

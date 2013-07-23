@@ -1,0 +1,27 @@
+<div class="navbar">
+  <div class="navbar-inner">
+    <span class="brand">Lunacy</span>
+  </div>
+</div>
+
+<div class="main sign-in">
+  <p class="icon text-center"><img src="../images/icons/lunacy128.png"></p>
+  <fieldset>
+    <div ng-show="error == 'signIn'" class="alert alert-error">
+      <strong>No!</strong> That’s the wrong name or password.
+    </div>
+    <div ng-show="error == 'register'" class="alert alert-error">
+      <strong>Too bad!</strong> That name has been taken. Try another one.
+    </div>
+    <div class="control-group">
+      <input type="text" name="name" ng-model="name" ng-disabled="busy" class="input-block-level" placeholder="Name" maxlength="12" required>
+    </div>
+    <div class="control-group">
+      <input type="password" name="password" ng-model="password" ng-disabled="busy" class="input-block-level" placeholder="Password" required>
+    </div>
+    <button type="button" class="btn btn-primary btn-block" ontap="signIn()" ng-disabled="f.$invalid || busy">Sign in</button>
+    <button type="button" class="btn btn-block" ontap="register()" ng-disabled="f.$invalid || busy">Register</button>
+    <p>
+    <p>If you already had an account in Lunacy 1, please register again. Use the same name and email <a href="mailto:support@playlunacy.com" target="_blank">support@playlunacy.com</a> if you had a full account.
+  </fieldset>
+</div>

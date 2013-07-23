@@ -1,0 +1,31 @@
+<div class="navbar">
+  <div class="navbar-inner">
+    <span class="brand">Friends</span>
+    <ul class="nav">
+      <li><a ontap="navigate.go('/dashboard', 'modal', true)">Back</a></li>
+    </ul>
+  </div>
+</div>
+
+<div class="main friends">
+  <form name="f">
+    <div ng-show="error == 'notFound'" class="alert alert-error">
+      <strong>Oops!</strong> This user has not been found.
+    </div>
+    <div>
+      <div class="input-append">
+        <input type="text" list="names" placeholder="Name" spellcheck="false" autocorrect="off" autocapitalize="off" ng-model="name" ng-disabled="busy || editing">
+        <button class="btn" ng-click="befriend(name)" ng-disabled="!name || busy || editing">Add</button>
+      </div>
+      <button class="btn" ng-model="editing" button-toggle>Edit</button>
+    </div>
+    <datalist id="names">
+      <option ng-repeat="name in names">{{name}}</option>
+    </datalist>
+  </form>
+  <div ng-repeat="friend in friends" class="friend" ng-class="{ editing: editing, removing: removing[friend] }">
+    <button ng-class="{ show: editing &amp;&amp; !removing[friend] }" class="btn btn-danger remove" ng-click="remove(friend)">Remove</button>
+    <avatar player="friend"></avatar>
+    {{friend}}
+  </div>
+</div>

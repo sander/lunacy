@@ -1,0 +1,60 @@
+<div class="navbar integrated">
+  <div class="navbar-inner">
+    <!--
+    <ul class="nav pull-left">
+      <li><a href="#/create">Create game</a></li>
+    </ul>
+    -->
+    <ul class="nav pull-right">
+      <!--
+      <li><a ontap="navigate.go('/friends')">Friends</a></li>
+      -->
+      <li ng-hide="isIOS"><a external-href="http://forum.playlunacy.com/">Forum</a></li>
+      <li><a ontap="navigate.go('/settings')">Settings</a></li>
+    </ul>
+  </div>
+</div>
+
+<div class="main dashboard">
+  <div ng-switch on="hasAvatar">
+    <div ng-switch-when="false" class="noAvatar">
+      <p>pick an avatar</p>
+      <ng-include src="'partials/choose-avatar.html'" ng-controller="ChooseAvatarCtrl"></ng-include>
+    </div>
+  </div>
+  
+  <div ng-hide="(action = (games | filter:{ action_needed: user })) | empty" class="game-list-container">
+    <h2>Your turn</h2>
+    <div class="game-list" ng-class="{ 'btn-group btn-group-vertical': action[1] }">
+      <a class="btn btn-large" ontap="prepare(game.name); navigate.go('/game/' + game.id + '/main', 'slide')" ng-include="'partials/game-button.html'" ng-repeat="game in action"></a>
+    </div>
+  </div>
+
+  <div ng-hide="(waiting = (games | filter:waitingFilter | filter:activeFilter)) | empty" class="game-list-container">
+    <h2>Waiting for others</h2>
+    <div class="game-list" ng-class="{ 'btn-group btn-group-vertical': waiting[1] }">
+      <a class="btn btn-large" ontap="prepare(game.name); navigate.go('/game/' + game.id + '/main', 'slide')" ng-include="'partials/game-button.html'" ng-repeat="game in waiting"></a>
+    </div>
+  </div>
+  
+  <div ng-hide="open | empty" class="game-list-container">
+    <h2>Open games</h2>
+    <div class="game-list" ng-class="{ 'btn-group btn-group-vertical': open[1] }">
+      <a class="btn btn-large" ontap="joinOpen(game)" ng-include="'partials/game-button.html'" ng-repeat="game in open"></a>
+    </div>
+  </div>
+
+  <div ng-hide="(ended = (games | filter:{ ended: true } | filter:activeFilter)) | empty" class="game-list-container">
+    <h2>Ended</h2>
+    <div class="game-list" ng-class="{ 'btn-group btn-group-vertical': ended[1] }">
+      <a class="btn btn-large" ontap="prepare(game.name); navigate.go('/game/' + game.id + '/main', 'slide')" ng-include="'partials/game-button.html'" ng-repeat="game in ended"></a>
+    </div>
+  </div>
+  
+  <div ng-hide="(inactive = (games | filter:inactiveFilter)) | empty" class="game-list-container" ng-switch on="showInactive">
+    <h2 class="expandable" ng-click="showInactive = !showInactive">Inactive ({{inactive.length}})</h2>
+    <div ng-switch-when="true" class="game-list" ng-class="{ 'btn-group btn-group-vertical': waiting[1] }">
+      <a class="btn btn-large" ontap="prepare(game.name); navigate.go('/game/' + game.id + '/main', 'slide')" ng-include="'partials/game-button.html'" ng-repeat="game in inactive"></a>
+    </div>
+  </div>
+</div>

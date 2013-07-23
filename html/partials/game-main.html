@@ -1,0 +1,150 @@
+<div ng-show="game.loading" class="loading">
+</div>
+
+<p class="help"><a external-href="http://forum.playlunacy.com/viewtopic.php?f=8&t=20">?</a></p>
+
+<div ng-show="action" class="action">
+  <div ng-switch on="action.action_type">
+    <div ng-switch-when="accept_role">
+      <h1>Welcome to {{game.shared.name}}!</h1>
+      <p>
+        <span ng-repeat="role in game.roles(user)">You are a <role tag="{{role}}"></role>.</span>
+      </p>
+      <p>Are you ready?</p>
+    </div>
+    <div ng-switch-when="seer_pick">
+      <h1>Clairvoyance</h1>
+      <p>Whose role would you like to sense?</p>
+    </div>
+    <div ng-switch-when="werewolf_vote">
+      <h1>Predation</h1>
+      <p>Which civilian would you like to eat?</p>
+      <p ng-show="game.otherActions('werewolf_vote', user).length">You werewolves need to agree. Other votes:</p>
+      <ul>
+        <li ng-repeat="action in game.otherActions('werewolf_vote', user)">{{action.user}} votes for {{action.vote}}.
+      </ul>
+    </div>
+    <div ng-switch-when="accept_eaten">
+      <h1>{{game.shared.name}} is in shock!</h1>
+      <p>
+        Tonight, <player>{{action.data.victim}}</player> was eaten by werewolves.
+        <span ng-repeat="role in action.data.roles"><player>{{action.data.victim}}</player> turns out to have been a <role tag="{{role}}"></role>.</span>
+      </p>
+    </div>
+    <div ng-switch-when="seeing">
+      <h1>Revelation</h1>
+      <p><span ng-repeat="role in action.data.roles">You use your seer’s talents to sense that <player>{{action.data.seen}}</player> is a <role tag="{{role}}"></role>.</span></p>
+    </div>
+    <div ng-switch-when="mayor_pick">
+      <h1>Final vote</h1>
+      <p>The vote was tied, so as the mayor, you get to choose whom to hang.</p>
+    </div>
+    <div ng-switch-when="hanging">
+      <h1>Hanging</h1>
+      <p>{{action.data.hung}} was hanged by the citizens of {{game.shared.name}}. <span ng-repeat="role in action.data.roles"><player>{{action.data.hung}}</player> was a <role tag="{{role}}"></role>.</span>
+      <p ng-show="action.data.mayor_decided">This decision was forced by the mayor as the citizens could not agree.</p>
+    </div>
+    <div ng-switch-when="hang_vote">
+      <h1>Lynchmob</h1>
+      <p>Who should be hanged?</p>
+    </div>
+    <div ng-switch-when="election">
+      <h1 ng-hide="action.data.again">Election time!</h1>
+      <h1 ng-show="action.data.again">Revote</h1>
+      <p ng-hide="action.data.again">Vote for someone to become mayor of {{game.shared.name}}.</p>
+      <p ng-show="action.data.again">The previous vote for a new mayor ended up tied. Vote again.</p>
+    </div>
+    <div ng-switch-when="accept_mayor">
+      <h1>Election results</h1>
+      <p ng-hide="action.data.mayor == user">{{action.data.mayor}} has been elected mayor of {{game.shared.name}}.</p>
+      <p ng-show="action.data.mayor == user">You have been elected mayor of {{game.shared.name}}.</p>
+    </div>
+    <div ng-switch-when="mayor_succession">
+      <h1>Succession</h1>
+      <p ng-hide="action.data.mayor == user">Mayor {{action.data.previous}}’s last will reveals that {{action.data.mayor}} was chosen as his successor.</p>
+      <p ng-show="action.data.mayor == user">Mayor {{action.data.previous}}’s last will reveals that you were chosen as his successor.</p>
+    </div>
+    <div ng-switch-when="mayor_testament">
+      <h1>Last will</h1>
+      <p>
+        <span ng-show="action.data.attack_type == 'werewolves'">You are under attack by werewolves.</span>
+        <span ng-show="action.data.attack_type == 'hanging'">You have been sentenced to hanging.</span>
+        <span ng-show="action.data.attack_type == 'hunting'">The hunter has shot you and caused a fatal wound.</span>
+        Choose a successor to take over your duties as mayor.
+    </div>
+    <div ng-switch-when="priest_pick">
+      <h1>Prayer</h1>
+      <p>Who would you like to protect from werewolves tonight?</p>
+    </div>
+    <div ng-switch-when="priest_save">
+      <h1>Divine intervention</h1>
+      <p ng-hide="action.data.by_user">The priest’s prayer saved someone from being eaten by werewolves!</p>
+      <p ng-show="action.data.by_user">Your prayer saved {{action.data.saved}} from being eaten by werewolves!</p>
+    </div>
+    <div ng-switch-when="hunter_pick">
+      <h1>Blind vengeance</h1>
+      <p>You are about to die! Who would you like to shoot before you go?</p>
+    </div>
+    <div ng-switch-when="hunting">
+      <h1>Hunter’s demise</h1>
+      <p>{{action.data.hunter}} the hunter was killed. Before he died, he shot {{action.data.hunted}}, who turned out to be a <role ng-repeat="role in action.data.roles" tag="{{role}}"></role>.
+    </div>
+  </div>
+  <div ng-switch on="action.method" class="method">
+    <p ng-switch-when="done">
+      <button class="btn btn-primary" ng-model="action.done" button-toggle ng-click="save(action)">Done</button>
+    </p>
+  </div>
+  <div ng-switch on="!!action.action_type">
+    <div ng-switch-when="true">
+      <p class="illustration"><img ng-src="images/illustrations/{{illustration || action.action_type}}.svg"></p>
+    </div>
+  </div>
+</div>
+<div ng-hide="action || !!game.shared.ended || game.tags(user).indexOf('dead') != -1" class="action">
+  <div ng-switch on="game.shared.time">
+    <div ng-switch-when="night">
+      <h1>Night</h1>
+      <p>You are asleep…</p>
+    </div>
+    <div ng-switch-when="day">
+      <h1>Afternoon</h1>
+      <p>Waiting for other players…</p>
+    </div>
+  </div>
+  <div class="method"></div>
+  <p class="illustration" ng-switch on="game.shared.time">
+    <img ng-switch-when="day" ng-src="images/illustrations/waiting.svg">
+    <img ng-switch-when="night" ng-src="images/illustrations/waiting_night.svg">
+  </p>
+</div>
+<div ng-show="!action &amp;&amp; !game.shared.ended &amp;&amp; game.tags(user).length &amp;&amp; game.tags(user).indexOf('dead') != -1" class="action">
+  <h1>Rest in peace</h1>
+  <p>You are dead.</p>
+  <div class="method"></div>
+  <p class="illustration"><img ng-src="images/illustrations/rip.svg"></p>
+</div>
+<div ng-show="!action &amp;&amp; !!game.shared.ended" class="action">
+  <div ng-switch on="game.shared.ended.winner_description">
+    <div ng-switch-when="werewolves">
+      <h1>Carnage</h1>
+      <p ng-show="game.players.werewolves.contains(user)">All the civilians are dead, you have won!</p>
+      <p ng-hide="game.players.werewolves.contains(user)">All the civilians are dead, the werewolves have won!</p>
+    </div>
+    <div ng-switch-when="non_werewolves">
+      <h1>Salvation</h1>
+      <p ng-show="game.players.nonWerewolves.contains(user)">All the werewolves are dead, you have won!</p>
+      <p ng-hide="game.players.nonWerewolves.contains(user)">All the werewolves are dead, the civilians have won!</p>
+    </div>
+    <div ng-switch-when="tie">
+      <h1>Desolation</h1>
+      <p>Everyone has died, no one wins.</p>
+    </div>
+  </div>
+  <div class="method"></div>
+  <p class="illustration" ng-switch on="game.shared.ended.winner_description">
+    <img ng-switch-when="werewolves" ng-src="images/illustrations/end_wolfwin.svg">
+    <img ng-switch-when="non_werewolves" ng-src="images/illustrations/end_civilianwin.svg">
+    <img ng-switch-when="tie" ng-src="images/illustrations/end_nowin.svg">
+  </p>
+</div>
