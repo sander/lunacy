@@ -35,6 +35,14 @@ Making a new Chrome release
 3. Upload `dist/VERSION.zip` to the Chrome Web Store.
 
 
+Game data schema
+----------------
+
+Games are split up into multiple CouchDB documents, that are selectively synched to user databases.
+
+![See schema.png.](schema.png?raw=true)
+
+
 File structure
 --------------
 
