@@ -37,23 +37,22 @@ File structure
 --------------
 
     - html/                        client-side files
-      - images/                    backgrounds, illustrations, roles, default avatar
-      - js/                        JavaScript scripts, including standard Angular scripts and:
-        - bots.js                  bots used for testing
+      - images/                    redistributable images
+      - js/                        JavaScript scripts, including standard Angular scripts
       - less/                      style sheets
-      - lib/                       third-party libraries
+      - lib/                       third-party font and libraries
       - partials/                  HTML templates, among which:
         - game-main.html           in-game main views
-        - game-chat.html           chat and game history
+        - game-event.html          game history notices
       - index.inmem.html           test without a database connection
       - index.nocache.deploy.html  used in Chrome app
-      - index.nocache.dev.html     test with a local database
-    - images/                      general images
     - lib/                         code shared between server and clients
       - game.js                    game objects and functions
       - proceed.js                 game logic
+
+    - visuals/                     non-redistributable visuals used in the game
                                  
-    - config/                      configuration files, symlink one of both to config.js
+    - config/                      configuration files, symlink one to config.js
     - manifest.json                Chrome Web App settings
                                  
     - design/                      CouchDB design documents with map/reduce queries etc.
@@ -64,16 +63,20 @@ File structure
     - bots/
       - bouncer.js                 handles user presence and data transfer
       - collector.*                collects money from Google for upgrading accounts
-      - gamemaster.html            creates open games and proceeds them
+      - gamemaster.js              creates open games and proceeds them
       - hedwig.js                  delivers messages to users
       - host.js                    creates new user accounts
                                  
-    - chrome/                      Chrome app
+    - chrome/                      Chrome packaged app
     - ios/                         iOS app
      
     - tools/                       tools for development
+      - actions.js                 create an overview of players who need to do something
+      - less.sh                    compile style sheets for iOS
       - push.sh                    push to db, usage: server=name:passwd@server tools/push.sh
-      - release.sh                 create zip, usage: v=2.0.0 tools/release.sh
+      - random.js                  take all open actions and perform them randomly
+      - release.sh                 build Chrome app, usage: v=2.0.0 tools/release.sh
+      - replicate_from_users.js    used in case bouncer doesn’t work properly
     
     - node_modules/                imported libraries for the server
                                  
