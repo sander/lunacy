@@ -97,7 +97,7 @@
   </div>
   <div ng-switch on="!!action.action_type">
     <div ng-switch-when="true">
-      <p class="illustration"><img ng-src="images/illustrations/{{illustration || action.action_type}}.svg"></p>
+      <p class="illustration"><img ng-src="../visuals/illustrations/{{illustration || action.action_type}}.svg"></p>
     </div>
   </div>
 </div>
@@ -114,15 +114,15 @@
   </div>
   <div class="method"></div>
   <p class="illustration" ng-switch on="game.shared.time">
-    <img ng-switch-when="day" ng-src="images/illustrations/waiting.svg">
-    <img ng-switch-when="night" ng-src="images/illustrations/waiting_night.svg">
+    <img ng-switch-when="day" ng-src="../visuals/illustrations/waiting.svg">
+    <img ng-switch-when="night" ng-src="../visuals/illustrations/waiting_night.svg">
   </p>
 </div>
 <div ng-show="!action &amp;&amp; !game.shared.ended &amp;&amp; game.tags(user).length &amp;&amp; game.tags(user).indexOf('dead') != -1" class="action">
   <h1>Rest in peace</h1>
   <p>You are dead.</p>
   <div class="method"></div>
-  <p class="illustration"><img ng-src="images/illustrations/rip.svg"></p>
+  <p class="illustration"><img ng-src="../visuals/illustrations/rip.svg"></p>
 </div>
 <div ng-show="!action &amp;&amp; !!game.shared.ended" class="action">
   <div ng-switch on="game.shared.ended.winner_description">
@@ -143,8 +143,8 @@
   </div>
   <div class="method"></div>
   <p class="illustration" ng-switch on="game.shared.ended.winner_description">
-    <img ng-switch-when="werewolves" ng-src="images/illustrations/end_wolfwin.svg">
-    <img ng-switch-when="non_werewolves" ng-src="images/illustrations/end_civilianwin.svg">
-    <img ng-switch-when="tie" ng-src="images/illustrations/end_nowin.svg">
+    <img ng-switch-when="werewolves" ng-src="../visuals/illustrations/end_wolfwin.svg">
+    <img ng-switch-when="non_werewolves" ng-src="../visuals/illustrations/end_civilianwin.svg">
+    <img ng-switch-when="tie" ng-src="../visuals/illustrations/end_nowin.svg">
   </p>
 </div>

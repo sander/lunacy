@@ -26,20 +26,13 @@
           ><!--<player name="{{player}}" format="avatar"></player>-->
           <avatar player="player"></avatar>
           <span ng-repeat="tag in game.tags(player)" ng-switch on="tag">
-            <img ng-switch-when="mayor" src="images/mayor.svg" class="emblem" title="mayor" data-toggle="tooltip" data-placement="top" data-trigger="click hover">
+            <img ng-switch-when="mayor" src="../visuals/emblems/mayor.svg" class="emblem" title="mayor" data-toggle="tooltip" data-placement="top" data-trigger="click hover">
             <img ng-switch-when="dead" src="images/cross.svg" class="emblem" title="dead" data-toggle="tooltip" data-placement="top" data-trigger="click hover">
             <role tag="role/werewolf" ng-switch-when="role/werewolf"></role>
             <role tag="role/hunter" ng-switch-when="role/hunter"></role>
             <role tag="role/civilian" ng-switch-when="role/civilian"></role>
             <role tag="role/priest" ng-switch-when="role/priest"></role>
             <role tag="role/seer" ng-switch-when="role/seer"></role>
-            <!--
-            <img ng-switch-when="role/werewolf" src="images/roles/werewolf.svg" class="role" title="werewolf" data-toggle="tooltip" data-placement="top" data-trigger="click hover">
-            <img ng-switch-when="role/hunter" src="images/roles/hunter.svg" class="role" title="hunter" data-toggle="tooltip" data-placement="top" data-trigger="click hover">
-            <img ng-switch-when="role/civilian" src="images/roles/civilian.svg" class="role" title="civilian" data-toggle="tooltip" data-placement="top" data-trigger="click hover">
-            <img ng-switch-when="role/priest" src="images/roles/priest.svg" class="role" title="priest" data-toggle="tooltip" data-placement="top" data-trigger="click hover">
-            <img ng-switch-when="role/seer" src="images/roles/seer.svg" class="role" title="seer" data-toggle="tooltip" data-placement="top" data-trigger="click hover">
-            -->
             <span ng-switch-default>{{tag}}</span>
           </span>
           <span class="name">{{player}}</span>

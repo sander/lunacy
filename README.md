@@ -8,7 +8,7 @@ Copyright 2012-2013 [Sander Dijkhuis](mailto:mail@sanderdijkhuis.nl). The source
 Developing the gameplay
 -----------------------
 
-1. Start a web server. In Windows, you could do this by starting a copy of mongoose.exe from the Lunacy folder.
+1. Start a web server that hosts the Lunacy folder, for example using [Mongoose](https://code.google.com/p/mongoose/) in Windows.
 2. Go to the test page using Chrome. The URL is [localhost:8080/html/index.inmem.html](http://localhost:8080/html/index.inmem.html) if you use Mongoose.
 
 
@@ -23,6 +23,14 @@ Installing the extension
 You can now launch the new Lunacy in the same way as you launch the old Lunacy. Note that they have the same icon.
 
 To load updated code, press ctrl+R (or any other key combination you use for reloading) while Lunacy is running.
+
+
+Making a new Chrome release
+---------------------------
+
+1. Update the version number in `manifest.json`.
+2. Run `v=VERSION tools/release.sh`, where VERSION is the same number as in `manifest.json`.
+3. Upload `dist/VERSION.zip` to the Chrome Web Store.
 
 
 File structure

@@ -2,7 +2,7 @@
   "name": "Lunacy 2",
   "description": "Survive in a village menaced by werewolves!",
   "manifest_version": 2,
-  "version": "1.9.5",
+  "version": "1.9.6",
   "minimum_chrome_version": "25",
   "app": {
     "launch": {
@@ -18,11 +18,11 @@
     "http://*.playlunacy.com/"
   ],
   "web_accessible_resources": [
-    "icons/lunacy48.png"
+    "visuals/icons/lunacy48.png"
   ],
   "icons": {
-    "16": "images/icons/lunacy16.png",
-    "48": "images/icons/lunacy48.png",
-    "128": "images/icons/lunacy128.png"
+    "16": "visuals/icons/lunacy16.png",
+    "48": "visuals/icons/lunacy48.png",
+    "128": "visuals/icons/lunacy128.png"
   }
 }

@@ -16,8 +16,8 @@
 'use strict';
 
 angular.module('lunacy.configServices', []).
-  constant('server', 'http://playlunacy.com:5986').
-  constant('host', 'http://playlunacy.com:7000').
-  constant('gamemaster', 'http://playlunacy.com:7003').
-  constant('bouncer', 'http://playlunacy.com:7004').
+  constant('server', 'http://server.playlunacy.com:5986').
+  constant('host', 'http://server.playlunacy.com:7000').
+  constant('gamemaster', 'http://server.playlunacy.com:7003').
+  constant('bouncer', 'http://server.playlunacy.com:7004').
   constant('dev', false);

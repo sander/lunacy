@@ -5,5 +5,5 @@ android/bin
 config/*
 dist
 *.zip
-manifest.json
 *~
+visuals

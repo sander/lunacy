@@ -143,10 +143,8 @@ function SignInCtrl($scope, $location, $navigate, Auth, dev) {
   
   $scope.signIn = function() {
     $scope.busy = true;
-    if (!window.chrome || !window.chrome.storage) {
-      localStorage.name = $scope.name;
-      localStorage.password = $scope.password;
-    }
+    localStorage.name = $scope.name;
+    localStorage.password = $scope.password;
     Auth.signIn($scope.name, $scope.password).then(function() {
       $navigate.go('/dashboard', 'fade');
     }, function() {
@@ -171,21 +169,17 @@ function SignInCtrl($scope, $location, $navigate, Auth, dev) {
     });
   };
 
-  if (!window.chrome || !window.chrome.storage) {
-    if (localStorage.name && localStorage.password) {
-      $scope.name = localStorage.name;
-      $scope.password = localStorage.password;
-      $scope.signIn();
-    }
+  if (localStorage.name && localStorage.password) {
+    $scope.name = localStorage.name;
+    $scope.password = localStorage.password;
+    $scope.signIn();
   }
 }
 
 function SettingsCtrl($scope, Auth, Profile, Storage) {
   $scope.signOut = function() {
-    if (!window.chrome || !window.chrome.storage) {
-      localStorage.name = '';
-      localStorage.password = '';
-    }
+    localStorage.name = '';
+    localStorage.password = '';
     Auth.signOut();
   };
   
@@ -367,7 +361,7 @@ function CreateCtrl() {
 
 function UpgradeCtrl($rootScope, $scope) {
   $scope.start = function() {
-    open('http://playlunacy.com:7001/?user=' + encodeURIComponent($scope.user));
+    open('http://server.playlunacy.com:7001/?user=' + encodeURIComponent($scope.user));
   }
 }
 
@@ -410,7 +404,7 @@ function ChooseAvatarCtrl($scope, Profile, Auth, Storage) {
   
   $scope.select = function(name) {
     var xhr = new XMLHttpRequest();
-    xhr.open('GET', 'images/avatars/' + name, true);
+    xhr.open('GET', '../visuals/avatars/' + name, true);
     xhr.responseType = 'blob';
     xhr.onload = function() {
       if (this.status != 200) return;

@@ -23,7 +23,7 @@ angular.module('lunacy.directives', []).
       link: function(scope, element, attrs) {
         scope.$watch(attrs.tag, function() {
           var name = attrs.tag.split('/')[1];
-          element.find('img').attr('src', 'images/rolicons/' + name + '.svg');
+          element.find('img').attr('src', '../visuals/rolicons/' + name + '.svg');
           element.find('.roleName').text(name);
         });
       }
