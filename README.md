@@ -85,11 +85,13 @@ File structure
     - README.md                    this file
 
 
-Imported libraries
-------------------
+Third-party material distributed with app
+-----------------------------------------
 
-- [AngularJS](http://angularjs.org/)
-- [Bootstrap](http://twitter.github.com/bootstrap/)
-- [jQuery](http://jquery.com/)
-- [node-uuid](https://github.com/broofa/node-uuid)
-- [LESS](http://lesscss.org/)
+- [AngularJS](http://angularjs.org/) (MIT license)
+- [angular-mobile-nav](https://github.com/ajoslin/angular-mobile-nav) (MIT license)
+- [Bootstrap](http://twitter.github.com/bootstrap/) (Apache 2.0 license)
+- [Fondamento](http://www.google.com/fonts/specimen/Fondamento) (OFL 1.1 license)
+- [jQuery](http://jquery.com/) (MIT license)
+- [LESS](http://lesscss.org/) (Apache 2.0 license)
+- [node-uuid](https://github.com/broofa/node-uuid) (MIT license)
