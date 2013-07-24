@@ -19,6 +19,7 @@ var luser;
 var notifications = [];
 
 function listen() {
+  return; // TODO the notification system currently doesn’t work well.
   source = new EventSource('http://playlunacy.com:7002/' + luser);
   source.addEventListener('chat', function(event) {
     var data = JSON.parse(event.data);
