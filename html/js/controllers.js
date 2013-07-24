@@ -143,8 +143,10 @@ function SignInCtrl($scope, $location, $navigate, Auth, dev) {
   
   $scope.signIn = function() {
     $scope.busy = true;
-    localStorage.name = $scope.name;
-    localStorage.password = $scope.password;
+    if (!window.chrome || !window.chrome.storage) {
+      localStorage.name = $scope.name;
+      localStorage.password = $scope.password;
+    }
     Auth.signIn($scope.name, $scope.password).then(function() {
       $navigate.go('/dashboard', 'fade');
     }, function() {
@@ -169,17 +171,21 @@ function SignInCtrl($scope, $location, $navigate, Auth, dev) {
     });
   };
 
-  if (localStorage.name && localStorage.password) {
-    $scope.name = localStorage.name;
-    $scope.password = localStorage.password;
-    $scope.signIn();
+  if (!window.chrome || !window.chrome.storage) {
+    if (localStorage.name && localStorage.password) {
+      $scope.name = localStorage.name;
+      $scope.password = localStorage.password;
+      $scope.signIn();
+    }
   }
 }
 
 function SettingsCtrl($scope, Auth, Profile, Storage) {
   $scope.signOut = function() {
-    localStorage.name = '';
-    localStorage.password = '';
+    if (!window.chrome || !window.chrome.storage) {
+      localStorage.name = '';
+      localStorage.password = '';
+    }
     Auth.signOut();
   };
   
