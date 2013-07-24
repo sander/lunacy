@@ -9,12 +9,26 @@
     <link rel="stylesheet" href="stylesheets/mobile.css" media="handheld, only screen and (max-device-width:640px)"/>
     <link rel="stylesheet" href="stylesheets/pygment_trac.css"/>
 
+    <style>
+      .screenshots { text-align: center }
+      .screenshots img {
+        width: 25%;
+        border: none;
+        box-shadow: none;
+        -webkit-box-shadow: none;
+      }
+    </style>
+
     <script type="text/javascript" src="javascripts/modernizr.js"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script type="text/javascript" src="javascripts/headsmart.min.js"></script>
     <script type="text/javascript">
       $(document).ready(function () {
         $('#main_content').headsmart()
+
+        $('.screenshots img').each(function() {
+          $(this).wrap($('<a>').attr('href', this.src));
+        })
       })
     </script>
     <title>Lunacy</title>
@@ -37,7 +51,7 @@
 
       <section id="downloads">
         <span class="inner">
-          <a href="https://chrome.google.com/webstore/detail/lunacy-2/cmojlidobdahllkcpldacagkifpiaolh" class="zip"><em>install</em> CHROME APP</a><a href="https://github.com/sander/lunacy/" class="tgz"><em>view</em> SOURCE CODE</a>
+          <a href="https://chrome.google.com/webstore/detail/lunacy-2/cmojlidobdahllkcpldacagkifpiaolh" class="zip"><em>install</em> CHROME APP</a><a href="https://github.com/sander/lunacy/" class="tgz"><em>access</em> SOURCE CODE</a>
         </span>
       </section>
 
@@ -52,15 +66,24 @@
 
 <p>Locked in this struggle for survival, only your wits and luck can save you.</p>
 
-<p><strong><a href="https://chrome.google.com/webstore/detail/lunacy-2/cmojlidobdahllkcpldacagkifpiaolh"><img src="https://developers.google.com/chrome/web-store/images/branding/ChromeWebStore_Badge_v2_206x58.png" alt="Available in the Chrome Web Store"></a></strong></p>
+<p style="text-align: center; margin-top: 2em"><strong><a href="https://chrome.google.com/webstore/detail/lunacy-2/cmojlidobdahllkcpldacagkifpiaolh"><img src="https://developers.google.com/chrome/web-store/images/branding/ChromeWebStore_Badge_v2_206x58.png" alt="Available in the Chrome Web Store" style="background: #fff"></a></strong></p>
+
+<h2><a name="screenshots" class="anchor" href="#screenshots"><span class="octicon octicon-link"></span></a>Screenshots</h2>
+
+<p class="screenshots">
+  <img src="images/screenshots/night.png"><img src="images/screenshots/predation.png"><img src="images/screenshots/hang.png"><img src="images/screenshots/chat.png">
+</p>
 
 <h2>
-<a name="game-support" class="anchor" href="#game-support"><span class="octicon octicon-link"></span></a>Game support</h2>
+<a name="about" class="anchor" href="#about"><span class="octicon octicon-link"></span></a>About Lunacy</h2>
+
+<h3>
+<a name="game-support" class="anchor" href="#game-support"><span class="octicon octicon-link"></span></a>Game support</h3>
 
 <p>If you need help with the official Lunacy game, email <a href="mailto:support@playlunacy.com">the Lunacy team</a>.</p>
 
-<h2>
-<a name="credits" class="anchor" href="#credits"><span class="octicon octicon-link"></span></a>Credits</h2>
+<h3>
+<a name="credits" class="anchor" href="#credits"><span class="octicon octicon-link"></span></a>Credits</h3>
 
 <p><strong>Development</strong>: <a href="http://sanderdijkhuis.nl/">Sander Dijkhuis</a></p>
 
@@ -68,10 +91,10 @@
 
 <p><strong>Based on the original games by</strong>: Andrew Plotkin (<a href="http://www.eblong.com/zarf/werewolf.html">Werewolf game</a>), Dimma Davidoff (<a href="http://web.archive.org/web/19990302082118/http://members.theglobe.com/mafia_rules/">Mafia game</a>)</p>
 
-<p><strong>Thanks to</strong>: Simon Willems, Rosalie Jansen, Valeria Boshnakova</p>
+<p><strong>With contributions by</strong>: Simon Willems, Rosalie Jansen, Valeria Boshnakova</p>
 
-<h2>
-<a name="open-source" class="anchor" href="#open-source"><span class="octicon octicon-link"></span></a>Open source</h2>
+<h3>
+<a name="open-source" class="anchor" href="#open-source"><span class="octicon octicon-link"></span></a>Open source</h3>
 
 <p>Lunacy’s source code is licensed under an Apache 2.0 license. The artwork currently used in Lunacy is not available under an open source or free software license.</p>
       </section>
