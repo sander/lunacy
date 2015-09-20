@@ -1,10 +1,24 @@
-﻿Lunacy
+Lunacy
 ======
 
+Lunacy is a werewolves game for Chrome and iOS. It ran on playlunacy.com (not owned by me anymore).
 
 Copyright 2012-2013 [Sander Dijkhuis](mailto:mail@sanderdijkhuis.nl). The source code is available under an Apache 2.0 license.
 
-The artwork used in Lunacy is not available under an open source or free software license. You can download [dl.playlunacy.com/visuals.zip](http://dl.playlunacy.com/visuals.zip) and extract it to the `visuals/` directory for testing.
+
+Screenshots
+-----------
+
+![Night](https://raw.githubusercontent.com/sander/lunacy/gh-pages/images/screenshots/night.png)
+![Chat](https://raw.githubusercontent.com/sander/lunacy/gh-pages/images/screenshots/chat.png)
+![Lynchmob](https://raw.githubusercontent.com/sander/lunacy/gh-pages/images/screenshots/hang.png)
+![Dashboard](https://raw.githubusercontent.com/sander/lunacy/gh-pages/images/screenshots/dashboard.png)
+
+
+Artwork
+-------
+
+The artwork used in Lunacy is not available under an open source or free software license. You can mail the author for a zipfile that you can then extract to the `visuals/` directory for testing.
 
 
 Developing the gameplay
