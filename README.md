@@ -9,10 +9,10 @@ Copyright 2012-2013 [Sander Dijkhuis](mailto:mail@sanderdijkhuis.nl). The source
 Screenshots
 -----------
 
-![Night](https://raw.githubusercontent.com/sander/lunacy/gh-pages/images/screenshots/night.png)
-![Chat](https://raw.githubusercontent.com/sander/lunacy/gh-pages/images/screenshots/chat.png)
-![Lynchmob](https://raw.githubusercontent.com/sander/lunacy/gh-pages/images/screenshots/hang.png)
-![Dashboard](https://raw.githubusercontent.com/sander/lunacy/gh-pages/images/screenshots/dashboard.png)
+<img alt="Night" src="https://raw.githubusercontent.com/sander/lunacy/gh-pages/images/screenshots/night.png" width="300" height"412">
+<img alt="Chat" src="https://raw.githubusercontent.com/sander/lunacy/gh-pages/images/screenshots/chat.png" width="300" height"412">
+<img alt="Lynchmob" src="https://raw.githubusercontent.com/sander/lunacy/gh-pages/images/screenshots/hang.png" width="300" height"412">
+<img alt="Dashboard" src="https://raw.githubusercontent.com/sander/lunacy/gh-pages/images/screenshots/dashboard.png" width="300" height"412">
 
 
 Artwork
